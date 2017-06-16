@@ -1,13 +1,9 @@
 const userInfo = " ?client_id=8538a1744a7fdaa59981232897501e04";
 const clientUse = "https://api.soundcloud.com/users/";
-var userDesire = "";
-var searchBar = document.querySelector('.searchBar');
+var userDesire = "zach";
+var searchBtn = document.querySelector('#searchBtn');
+var searchInput = document.querySelector("#searchInput");
 
-/*
-  Here is a guide for the steps you could take:
-*/
-
-// 1. First select and store the elements you'll be working with
 
 
 // 2. Create your `onSubmit` event for getting the user's search term
@@ -20,6 +16,14 @@ var searchBar = document.querySelector('.searchBar');
 
 
 // 5. Create a way to listen for a click that will play the song in the audio play
+searchBtn.addEventListener("click", function (e) {
+    userDesire = searchInput.value;
+    console.log('userDesire: ', userDesire);
+    console.log("THIS SHIT IS B A N A A NAAASA");
+    music()
+});
+
+
 function music() {
     fetch(clientUse + userDesire + userInfo)
         .then(function (response) {
@@ -27,14 +31,14 @@ function music() {
         })
         .then(function (data) {
             var users = data.results;
-            for (var i = 0; i < users.length; i++) {
-                console.log("customer : ", users[i])
-                thisStuf(users[i])
-            }
-
-
+            // for (var i = 0; i < users.length; i++) {
+            //     console.log("customer : ", users[i])
+            //     thisStuf(users[i])
+            // }
         });
 }
+
+
 function thisStuf(data) {
 
     function createProfileWrapper() {
@@ -42,4 +46,3 @@ function thisStuf(data) {
         customers.appendChild(profileEverything);
     }
 }
-music()
