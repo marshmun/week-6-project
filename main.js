@@ -1,5 +1,7 @@
-const userInfo = " id=8538a1744a7fdaa59981232897501e04";
-const clientUse = "https://api.soundcloud.com/tracks?client"
+const userInfo = " ?client_id=8538a1744a7fdaa59981232897501e04";
+const clientUse = "https://api.soundcloud.com/users/";
+var userDesire = "";
+var searchBar = document.querySelector('.searchBar');
 
 /*
   Here is a guide for the steps you could take:
@@ -19,18 +21,19 @@ const clientUse = "https://api.soundcloud.com/tracks?client"
 
 // 5. Create a way to listen for a click that will play the song in the audio play
 function music() {
-    fetch("https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04")
+    fetch(clientUse + userDesire + userInfo)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            var customers = data.results;
-            for (var i = 0; i < customers.length; i++) {
-                console.log("customer : ", customers[i])
-                thisStuf(customers[i])
+            var users = data.results;
+            for (var i = 0; i < users.length; i++) {
+                console.log("customer : ", users[i])
+                thisStuf(users[i])
             }
 
-        })
+
+        });
 }
 function thisStuf(data) {
 
