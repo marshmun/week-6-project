@@ -59,6 +59,8 @@ function thisStuf(data) {
             musicPlayer.src = data.stream_url + userInfo;
         })
 
+
+
         var customImg = document.createElement("img");
         customImg.classList.add("pic");
         customImg.src = data.artwork_url;
