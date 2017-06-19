@@ -59,3 +59,17 @@ body {
 .text3 {
     font-size: 100px;
 }
+
+.results {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content {
+    flex: 1 1 25%;
+}
+
+.pic {
+    width: 80%;
+}

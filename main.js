@@ -1,4 +1,4 @@
-const userInfo = " ?client_id=8538a1744a7fdaa59981232897501e04";
+const userInfo = "?client_id=8538a1744a7fdaa59981232897501e04";
 const clientUse = "https://api.soundcloud.com/users/";
 var userDesire = "zach";
 var searchBtn = document.querySelector('#searchBtn');
@@ -28,11 +28,23 @@ function music() {
             return response.json();
         })
         .then(function (data) {
-            var users = data.results;
-            for (var i = 0; i < data.length; i++) {
-                console.log("customer : ", users[i])
-                thisStuf(users[i])
-            }
+            var user = data;
+            console.log(user);
+
+            fetch(clientUse + user.id + "/tracks" + userInfo)
+                .then((res) => {
+                    return res.json();
+                }).then((tracks) => {
+                    console.log(tracks);
+                    tracks.forEach((t) => {
+                        thisStuf(t);
+                    })
+                })
+
+            // for (var i = 0; i < data.length; i++) {
+            //     console.log("customer : ", users[i])
+            //     thisStuf(users[i])
+            // }
         });
 }
 
@@ -41,17 +53,19 @@ function thisStuf(data) {
 
     function createProfileWrapper() {
         var profileEverything = document.createElement('div');
-        customers.appendChild(profileEverything);
+        profileEverything.classList.add("content")
 
         var customImg = document.createElement("img")
         customImg.classList.add("pic");
-        customImg.src = data.avatar_url;
+        customImg.src = data.artwork_url;
         profileEverything.appendChild(customImg);
 
         var customAd1 = document.createElement("p")
         customAd1.classList.add("name")
-        customAd1.textContent = data.first_name;
+        customAd1.textContent = data.user.username;
         profileEverything.appendChild(customAd1);
+
+        document.querySelector(".results").appendChild(profileEverything)
     }
     createProfileWrapper();
 
