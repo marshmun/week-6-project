@@ -14,7 +14,7 @@ var musicPlayer = document.querySelector(".music-player");
 searchBtn.addEventListener("click", function (e) {
     userDesire = searchInput.value;
     music()
-
+    searchInput = "";
 });
 searchInput.addEventListener("keypress", function (e) {
     if (e.which == 13) {
@@ -54,6 +54,11 @@ function thisStuf(data) {
         var profileEverything = document.createElement('div');
         profileEverything.classList.add("content");
 
+
+        profileEverything.addEventListener("click", function (e) {
+            musicPlayer.src = data.stream_url + userInfo;
+        })
+
         var customImg = document.createElement("img");
         customImg.classList.add("pic");
         customImg.src = data.artwork_url;
@@ -70,11 +75,7 @@ function thisStuf(data) {
         profileEverything.appendChild(customAd1);
 
         document.querySelector(".results").appendChild(profileEverything);
+
     }
     createProfileWrapper();
-    function playThosetunes() {
-        var music = document
-        document.querySelector(".music-player").appendChild(src);
-    }
-
 }
