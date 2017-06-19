@@ -68,6 +68,7 @@ body {
 
 .content {
     flex: 1 1 25%;
+    margin-top: 3rem;
 }
 
 .pic {

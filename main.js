@@ -53,15 +53,20 @@ function thisStuf(data) {
 
     function createProfileWrapper() {
         var profileEverything = document.createElement('div');
-        profileEverything.classList.add("content")
+        profileEverything.classList.add("content");
 
-        var customImg = document.createElement("img")
+        var customImg = document.createElement("img");
         customImg.classList.add("pic");
         customImg.src = data.artwork_url;
         profileEverything.appendChild(customImg);
 
-        var customAd1 = document.createElement("p")
-        customAd1.classList.add("name")
+        var songName = document.createElement("p");
+        songName.classList.add("title");
+        songName.textContent = data.title;
+        profileEverything.appendChild(songName);
+
+        var customAd1 = document.createElement("p");
+        customAd1.classList.add("name");
         customAd1.textContent = data.user.username;
         profileEverything.appendChild(customAd1);
 
