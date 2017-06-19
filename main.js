@@ -3,6 +3,7 @@ const clientUse = "https://api.soundcloud.com/users/";
 var userDesire = "zach";
 var searchBtn = document.querySelector('#searchBtn');
 var searchInput = document.querySelector("#searchInput");
+var musicPlayer = document.querySelector(".music-player");
 
 
 
@@ -20,6 +21,12 @@ searchBtn.addEventListener("click", function (e) {
     userDesire = searchInput.value;
     music()
 });
+// searchInput.addEventListener("keypress", function (e) {
+//     if (e.which == 13) {
+//         userDesire = searchInput.value;
+//     }
+//     music()
+// });
 
 
 function music() {
@@ -40,11 +47,6 @@ function music() {
                         thisStuf(t);
                     })
                 })
-
-            // for (var i = 0; i < data.length; i++) {
-            //     console.log("customer : ", users[i])
-            //     thisStuf(users[i])
-            // }
         });
 }
 
