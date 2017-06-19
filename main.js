@@ -1,16 +1,10 @@
 const userInfo = "?client_id=8538a1744a7fdaa59981232897501e04";
 const clientUse = "https://api.soundcloud.com/users/";
-var userDesire = "zach";
+var userDesire = "";
 var searchBtn = document.querySelector('#searchBtn');
 var searchInput = document.querySelector("#searchInput");
 var musicPlayer = document.querySelector(".music-player");
 
-
-
-// 2. Create your `onSubmit` event for getting the user's search term
-
-
-// 3. Create your `fetch` request that is called after a submission
 
 
 // 4. Create a way to append the fetch results to your page
@@ -20,16 +14,19 @@ var musicPlayer = document.querySelector(".music-player");
 searchBtn.addEventListener("click", function (e) {
     userDesire = searchInput.value;
     music()
+
 });
-// searchInput.addEventListener("keypress", function (e) {
-//     if (e.which == 13) {
-//         userDesire = searchInput.value;
-//     }
-//     music()
-// });
+searchInput.addEventListener("keypress", function (e) {
+    if (e.which == 13) {
+        event.preventDefault();
+        userDesire = searchInput.value;
+    }
+    music()
+});
 
 
 function music() {
+
     fetch(clientUse + userDesire + userInfo)
         .then(function (response) {
             return response.json();
@@ -72,8 +69,12 @@ function thisStuf(data) {
         customAd1.textContent = data.user.username;
         profileEverything.appendChild(customAd1);
 
-        document.querySelector(".results").appendChild(profileEverything)
+        document.querySelector(".results").appendChild(profileEverything);
     }
     createProfileWrapper();
+    function playThosetunes() {
+        var music = document
+        document.querySelector(".music-player").appendChild(src);
+    }
 
 }
