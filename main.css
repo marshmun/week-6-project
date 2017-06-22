@@ -94,3 +94,22 @@ body {
 .pic:hover {
     margin-top: 5px;
 }
+
+.music-player {
+    width: 80%;
+    padding-bottom: 1rem;
+}
+
+.nothing {
+    margin: auto;
+}
+
+#searchInput {
+    width: 55%;
+    height: 2rem;
+}
+
+#searchBtn {
+    width: 6rem;
+    height: 2.5rem;
+}

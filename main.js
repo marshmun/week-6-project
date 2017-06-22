@@ -4,13 +4,10 @@ var userDesire = "";
 var searchBtn = document.querySelector('#searchBtn');
 var searchInput = document.querySelector("#searchInput");
 var musicPlayer = document.querySelector(".music-player");
+var nothingness = document.querySelector(".results")
 
 
 
-// 4. Create a way to append the fetch results to your page
-
-
-// 5. Create a way to listen for a click that will play the song in the audio play
 searchBtn.addEventListener("click", function (e) {
     userDesire = searchInput.value;
     music()
@@ -20,8 +17,8 @@ searchInput.addEventListener("keypress", function (e) {
     if (e.which == 13) {
         event.preventDefault();
         userDesire = searchInput.value;
+        music()
     }
-    music()
 });
 
 
@@ -33,16 +30,22 @@ function music() {
         })
         .then(function (data) {
             var user = data;
-            console.log(user);
 
             fetch(clientUse + user.id + "/tracks" + userInfo)
                 .then((res) => {
+                    nothingness.innerHTML = "";
                     return res.json();
                 }).then((tracks) => {
-                    console.log(tracks);
-                    tracks.forEach((t) => {
-                        thisStuf(t);
-                    })
+                    if (tracks.length > 1) {
+                        tracks.forEach((t) => {
+                            thisStuf(t);
+                        })
+                    } else {
+                        var destruction = document.createElement('p')
+                        destruction.classList.add("nothing")
+                        destruction.textContent = "No Results Please Try Again";
+                        nothingness.appendChild(destruction);
+                    }
                 })
         });
 }
@@ -59,21 +62,25 @@ function thisStuf(data) {
             musicPlayer.src = data.stream_url + userInfo;
         })
 
-
-
         var customImg = document.createElement("img");
-        customImg.classList.add("pic");
-        customImg.src = data.artwork_url;
-        profileEverything.appendChild(customImg);
-
         var songName = document.createElement("p");
+        var customAd1 = document.createElement("p");
+
+        customImg.classList.add("pic");
+        if (data.artwork_url) {
+            customImg.src = data.artwork_url;
+        }
+        else {
+            customImg.src = "http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found.gif"
+        }
+
         songName.classList.add("title");
         songName.textContent = data.title;
-        profileEverything.appendChild(songName);
-
-        var customAd1 = document.createElement("p");
         customAd1.classList.add("name");
         customAd1.textContent = data.user.username;
+
+        profileEverything.appendChild(customImg);
+        profileEverything.appendChild(songName);
         profileEverything.appendChild(customAd1);
 
         document.querySelector(".results").appendChild(profileEverything);
